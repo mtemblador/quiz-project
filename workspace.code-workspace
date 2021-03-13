@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../taskinator"
+		},
+		{
+			"path": "../taskmaster-pro"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "taskmaster-pro"
+	}
+}
