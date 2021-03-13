@@ -31,8 +31,6 @@ function getChoices(){
   //Question//
   var current = currentQuestion[questionIndex]
   directions.textContent = current.question
-  //Answer//
-  var answerChoices = currentQuestion[choicesIndex]
   //For Each Loop
   current.choices.forEach(function(item, index){
   var newButton = document.createElement("button");
