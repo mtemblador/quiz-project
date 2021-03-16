@@ -4,6 +4,7 @@ const directions = document.querySelector('.Directions');
 const answers = document.querySelector('.answers');
 const question = document.querySelector('.Question');
 const highscore = document.querySelector(".Highscore");
+var timeInterval;
 var questionIndex = 0
 var choicesIndex = 0
 var anwserIndex = 0
@@ -45,6 +46,9 @@ function setCounterText() {
 highscore.textContent = score
 }
 function getChoices() {
+  if(questionIndex > 5){
+    endofGame()
+  }
   directions.innerHTML = ""
   question.innerHTML = ""
   answers.innerHTML = ""
@@ -54,6 +58,7 @@ function getChoices() {
   //Question//
   var current = questionArray[questionIndex]
   directions.textContent = current.question
+  
   current.choices.forEach(function (item, index) {
     var newButtonA = document.createElement("button");
     newButtonA.setAttribute("type", "button");
@@ -74,11 +79,30 @@ question.addEventListener("click", function (event) {
   anwserIndex++
   getChoices();
   setCounterText()
+ 
   console.log(correct)
   console.log(myVal)
 })
+function endofGame(){
+  directions.innerHTML = "";
+  question.innerHTML = "";
+  answers.innerHTML = "";
+  highscore.innerHTML ="";
+  clearInterval(timeInterval)
+directions.textContent="All Done!";
+question.textContent= "Your final score is" + score;
+var input = document.createElement("input");
+var submit = document.createElement("button");
+submit.textContent= "Submit"
+var enterInitals = document.createElement("span")
+enterInitals.textContent = "Enter Initals:"
+answers.appendChild(input);
+answers.appendChild(submit);
+
+}
+
 // function endOfGame(){
-// directions.innerHTML = ""
+//   directions.innerHTML = ""
 //   question.innerHTML = ""
 //   answers.innerHTML = ""
 //   highscore.innerHTML = ""
@@ -88,7 +112,7 @@ question.addEventListener("click", function (event) {
 
 function countdown() {
   var timeLeft = 30;
-  var timeInterval = setInterval(function () {
+  timeInterval = setInterval(function () {
     if (timeLeft > 1) {
       timerEl.textContent = timeLeft;
       timeLeft--;
@@ -105,7 +129,6 @@ function countdown() {
 function runquiz() {
   countdown();
   getChoices();
-  endOfGame
   console.log("test");
 }
 startBtn.onclick = runquiz;
